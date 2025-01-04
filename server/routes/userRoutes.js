@@ -25,7 +25,7 @@ router.post("/signup",checkClientHeader ,async (req, res, next) => {
     passport.authenticate("local"),
     (req, res) => {
       try{
-      console.log("Logged-in user:", req.user); // Check if req.user is populated
+      console.log("Logged-in user:", req.session.passport.user); // Check if req.user is populated
       res.status(200).json({ message: "Logged in successfully!" });
     }catch(err){
       console.log(err.message);

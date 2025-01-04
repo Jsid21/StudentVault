@@ -24,7 +24,8 @@ if (process.env.NODE_ENV !== "production") {
   require('dotenv').config();
 }
 const app = express()
-const port = 3000
+const port = 4000
+
 
 const url = process.env.MONGODB_URL;
 
@@ -34,13 +35,13 @@ app.use(express.json());
 
 // Allow CORS with credentials
 app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "http://localhost:5173", "https://student-vault.vercel.app/"); // React app's URL
+    res.header("Access-Control-Allow-Origin", "https://student-vault.vercel.app/"); // React app's URL
     res.header("Access-Control-Allow-Credentials", "true");
     next();
 });
 
 const corsOptions = {
-  origin: ["http://localhost:5173", "https://student-vault.vercel.app"],
+  origin: ["https://student-vault.vercel.app"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization", "x-client-id"],
   credentials: true

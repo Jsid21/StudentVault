@@ -16,6 +16,7 @@ export const Showcontent = () => {
     const fetchPosts = async () => {
       try {
         const response = await axios.get("https://student-vault-server.vercel.app/api/posts", {
+
           headers: {
             "x-client-id": import.meta.env.VITE_CLIENT_ID, // Must match the value on the server
           },

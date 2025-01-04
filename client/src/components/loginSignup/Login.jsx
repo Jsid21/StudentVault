@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./loginsignup.css";
 
 export const Login = ({ onLogin}) => {
-  const [formData, setFwormData] = useState({
+  const [formData, setFormData] = useState({
     username: "",
     password: "",
   });

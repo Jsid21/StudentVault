@@ -41,7 +41,7 @@ export const Update = ({ sessionDetail }) => {
         formDataToSend.append('file', formData.file);
       }
 
-      await axios.put(`http://localhost:3000/api/posts/${post._id}`, formDataToSend, {
+      await axios.put(`https://studentvault-server.onrender.com/api/posts/${post._id}`, formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'x-client-id': clientId,

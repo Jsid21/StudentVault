@@ -20,7 +20,7 @@ function App() {
 
   const checkSession = async () => {
     try {
-      const response = await axios.get('https://student-vault-server.vercel.app/api/checkSession', {
+      const response = await axios.get('https://studentvault-server.onrender.com/api/checkSession', {
         withCredentials: true,
       });
       console.log('Session response:', response.data); // Debugging

@@ -11,7 +11,7 @@ export const Navbar = ({ session, onLogout }) => {
     try {
       // Logout endpoint (assumes /logout exists on your backend)
       await axios.post(
-        'https://student-vault-server.vercel.app/logout',
+        'https://studentvault-server.onrender.com/logout',
         {},
         {
           headers: {

@@ -33,7 +33,7 @@ export const Profile = ({ sessionDetail }) => {
     const fetchUserDetails = async () => {
       try {
         // if(userDetails.password !== newPassword.newpass ){
-        const response = await axios.get('https://student-vault-server.vercel.app/profile', {
+        const response = await axios.get('https://studentvault-server.onrender.com/profile', {
           params: { username: sessionDetail.username },
           headers: {        
             "x-client-id": import.meta.env.VITE_CLIENT_ID, // Must match the value on the server

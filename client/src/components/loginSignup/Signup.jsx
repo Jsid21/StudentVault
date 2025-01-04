@@ -26,7 +26,7 @@ export const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("https://student-vault-server.vercel.app/signup", formData,{ 
+      const response = await axios.post("https://studentvault-server.onrender.com/signup", formData,{ 
         headers: {        
           "x-client-id": import.meta.env.VITE_CLIENT_ID, // Must match the value on the server
         }});

@@ -30,7 +30,7 @@ export const Upload = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/upload",
+        "https://studentvault-server.onrender.com/api/upload",
         data,
         {
           headers: {

@@ -15,7 +15,7 @@ export const Userpost = ({sessionDetail}) => {
     useEffect(() => {
       const fetchPosts = async () => {
         try {
-          const response = await axios.get('https://student-vault-server.vercel.app/api/userposts', {
+          const response = await axios.get('https://studentvault-server.onrender.com/api/userposts', {
             params: { username: sessionDetail.username }, // Pass username to API
             headers: {
               'x-client-id': import.meta.env.VITE_CLIENT_ID, // Add required headers

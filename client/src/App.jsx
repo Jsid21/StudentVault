@@ -18,23 +18,24 @@ function App() {
   const [isLoading, setIsLoading] = useState(true); // Add loading state
 
 
-  // Function to check session status from the backend
   const checkSession = async () => {
     try {
-      const response = await axios.get('https://student-vault-server.vercel.app/api/checkSession', { withCredentials: true });
+      const response = await axios.get('https://student-vault-server.vercel.app/api/checkSession', {
+        withCredentials: true,
+      });
+      console.log('Session response:', response.data); // Debugging
       setSession({
         isLoggedIn: response.data.isLoggedIn,
         username: response.data.isLoggedIn ? response.data.username : '',
       });
-      
     } catch (error) {
       console.error('Error checking session:', error);
-      console.log(error.message);
       setSession({ isLoggedIn: false, username: '' });
     } finally {
-      setIsLoading(false); // Set loading to false after session check completes
+      setIsLoading(false);
     }
   };
+  
 
   useEffect(() => {
     checkSession(); // Check session status on initial load

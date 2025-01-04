@@ -6,7 +6,7 @@ import axios from 'axios';
 export const Navbar = ({ session, onLogout }) => {
   const { isLoggedIn, username } = session; // Destructure session details
   const navigate = useNavigate();
-  console.log('Navbar received session:', session); // Debugging
+  // console.log('Navbar received session:', session); // Debugging
   const handleLogout = async () => {
     try {
       // Logout endpoint (assumes /logout exists on your backend)

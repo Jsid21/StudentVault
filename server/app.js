@@ -82,6 +82,7 @@ app.use(session({
       maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
       httpOnly: true,
       secure: process.env.NODE_ENV === "production", // Only HTTPS in production
+      sameSite: "none"
     },
 }));
 
@@ -90,20 +91,22 @@ app.use(passport.initialize());
 app.use(passport.session());
 // Use local strategy
 passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser((user, done) => {
-  done(null, user.id); // Store the user ID in the session
-});
-passport.deserializeUser(async (id, done) => {
-  console.log("Deserializing user with ID:", id);
-  try {
-    const user = await User.findById(id);
-    console.log("Found user:", user);
-    done(null, user);
-  } catch (err) {
-    console.error("Error deserializing user:", err);
-    done(err);
-  }
-});
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+// passport.serializeUser((user, done) => {
+//   done(null, user.id); // Store the user ID in the session
+// });
+// passport.deserializeUser(async (id, done) => {
+//   console.log("Deserializing user with ID:", id);
+//   try {
+//     const user = await User.findById(id);
+//     console.log("Found user:", user);
+//     done(null, user);
+//   } catch (err) {
+//     console.error("Error deserializing user:", err);
+//     done(err);
+//   }
+// });
 
 
 // for defining local variables

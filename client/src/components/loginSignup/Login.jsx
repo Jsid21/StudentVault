@@ -23,7 +23,7 @@ export const Login = ({ onLogin}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3000/login", formData, { 
+      const response = await axios.post("https://student-vault-server.vercel.app/login", formData, { 
       headers: {        
         "x-client-id": import.meta.env.VITE_CLIENT_ID, // Must match the value on the server
       }, withCredentials: true });

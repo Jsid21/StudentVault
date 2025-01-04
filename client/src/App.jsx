@@ -21,7 +21,7 @@ function App() {
   // Function to check session status from the backend
   const checkSession = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/checkSession', { withCredentials: true });
+      const response = await axios.get('https://student-vault-server.vercel.app/api/checkSession', { withCredentials: true });
       setSession({
         isLoggedIn: response.data.isLoggedIn,
         username: response.data.isLoggedIn ? response.data.username : '',

@@ -14,7 +14,7 @@ export const Display = ({ sessionDetail }) => {
     const fetchPostDetails = async () => {
       try {
         // Fetch the post details
-        const response = await axios.get(`http://localhost:3000/api/posts/${postId}`, {
+        const response = await axios.get(`https://student-vault-server.vercel.app/api/posts/${postId}`, {
           headers: {
             "x-client-id": import.meta.env.VITE_CLIENT_ID, // Must match the value on the server
           },
@@ -40,7 +40,7 @@ export const Display = ({ sessionDetail }) => {
   const handleDelete = async () => {
     try {
       alert("Are you sure to delete?");
-      await axios.delete(`http://localhost:3000/api/posts/${postId}`, {
+      await axios.delete(`https://student-vault-server.vercel.app/api/posts/${postId}`, {
         headers: {
           "x-client-id": import.meta.env.VITE_CLIENT_ID,
         },

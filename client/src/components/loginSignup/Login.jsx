@@ -29,8 +29,8 @@ export const Login = ({ onLogin}) => {
       }, withCredentials: true });
 
       if (response.status === 200) {
-        setFormData({ username: "", password: "" });
         onLogin();
+        setFormData({ username: "", password: "" });
         // alert(`${response.data.message}`);
         setTimeout(() => navigate("/"), 2000);
       }

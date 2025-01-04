@@ -1,0 +1,104 @@
+.container2{
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    /* background: #fff; */
+    background-color: rgb(241, 239, 239);
+    /* color: black; */
+    padding-top: 10px;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+@media only screen and (max-width:435px) {
+    .container2{
+        width: 90%;
+    }
+    #exampleInputPassword1{
+        width: 100px;
+    }
+
+    #exampleInputPassword2{
+        width: 100px;
+    }
+
+    .currentpass{
+        flex-direction: column;
+    }
+    .newpass{
+        flex-direction: column;
+    }
+}
+
+.titlediv{
+    display: flex;
+    flex-direction: row;
+    align-self: self-start;
+
+}
+
+.pic{
+    width: 5rem;
+}
+
+.usernameDiv{
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin: auto 20px;
+}
+
+.details{
+    width: 80%;
+}
+
+.mail{
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    justify-content: space-around;
+}
+
+.currentpass{
+    display: flex;
+    /* flex-direction: row; */
+    align-content: center;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+.newpass{
+    display: flex;
+    /* flex-direction: row; */
+    align-content: center;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.pstitle{
+    font-weight: 900;
+    margin: 10px;
+}
+.changepass{
+    /* margin: 30px 0; */
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+
+}
+
+#exampleInputPassword1{
+    width: 250px;
+    margin: 10px 0;
+}
+
+#exampleInputPassword2{
+    width: 250px;
+    margin: 10px 0;
+}
+
+.submit_btn_3{
+    display: flex;
+    margin: auto;
+}

@@ -1,0 +1,21 @@
+/* Ensure uniform font size and alignment for navbar links */
+.navbar-nav .nav-link {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  /* Dropdown menu customization for mobile view */
+  @media (max-width: 576px) {
+    .dropdown-menu {
+      position: static !important; /* Align beneath the button */
+      float: none;
+      margin: 0; /* Remove any extra margin */
+      width: 100%; /* Full-width dropdown for mobile */
+      text-align: left; /* Align text properly */
+    }
+  
+    .btn-group .dropdown-toggle {
+      width: 100%; /* Ensure button width matches navbar width */
+    }
+  }
+  

@@ -1,0 +1,14 @@
+.submit_btn_1{
+    color: #fff;
+    background-color: #4c00b4;
+    cursor: pointer;
+    margin: auto;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    width: 150px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+}

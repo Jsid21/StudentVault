@@ -1,0 +1,36 @@
+.card_title1{
+    margin: 10px;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #100026;
+
+}
+
+.cont_main{
+    padding: 10px;
+    border-radius: 8px;
+    color: black;
+    text-justify:distribute;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+.innerText{
+    margin: 10px;
+}
+
+.card_subtitle1{
+    color: gray;
+    margin:8px 0px 2px 20px
+}
+

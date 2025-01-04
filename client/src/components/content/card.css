@@ -1,0 +1,56 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    transition-duration:0.1s;
+    transition-timing-function:linear;
+
+  }
+
+  .card:hover{
+    transform: scale(1.01);
+    z-index: 1;
+  }
+  
+  .card_body {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    overflow: hidden; /* Hide the overflowing content */
+  }
+  
+  .card_body img {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+  }
+  
+  .card_container {
+    margin: 0px 2px 2px 5px;
+    flex: 1; /* Allows container to take remaining space */
+    overflow: hidden;
+  }
+  
+  .card_title {
+    margin: 0;
+    font-size: 1rem;
+    white-space: normal; /* Allow title to wrap to a new line */
+    word-wrap: break-word; /* Breaks long words if necessary */
+    overflow-wrap: break-word;
+    color: #100026; /* Set the title color */
+    font-weight: 700;
+  }
+  
+  .card_subtitle {
+    color: white;
+    /* margin: 0px; */
+    font-size: 0.8rem;
+  }
+  
+  .card_text {
+    margin: 0; /* Remove extra margin */
+    white-space: nowrap; /* Prevent wrapping */
+    overflow: hidden; /* Hide overflowing text */
+    text-overflow: ellipsis; /* Add "..." to overflowing content */
+    margin-right: 10px;
+  }
+  

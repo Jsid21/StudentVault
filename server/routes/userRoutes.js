@@ -20,18 +20,19 @@ router.post("/signup",checkClientHeader ,async (req, res, next) => {
   });
 
   // Login route
-router.post(
-    "/login",checkClientHeader,
+  router.post(
+    "/login",
     passport.authenticate("local"),
-    (req, res, next) => {
-      try {
-        res.status(200).json({ message: "Logged in successfully!" });
-      } catch (err) {
-        console.log(err.message);
-        // res.status(400).json({ message: "Failed to login" });
-        next(new ExpressError(err.message, 401));
-      }
+    (req, res) => {
+      try{
+      console.log("Logged-in user:", req.user); // Check if req.user is populated
+      res.status(200).json({ message: "Logged in successfully!" });
+    }catch(err){
+      console.log(err.message);
+      // res.status(400).json({ message: "Failed to login" });
+      next(new ExpressError(err.message, 401));
     }
+  }
   );
 
 // post request for logout

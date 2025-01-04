@@ -48,8 +48,6 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-
-
 // to store all session details on mongodb
 const store = MongoStore.create({
     mongoUrl: url ,
@@ -81,19 +79,23 @@ app.use(session(sessionOptions));
 // library imported middlewares for password saving in database
 app.use(passport.initialize());
 app.use(passport.session());
+// Use local strategy
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+  done(null, user.id); // Store the user ID in the session
 });
-
 passport.deserializeUser(async (id, done) => {
+  console.log("Deserializing user with ID:", id);
   try {
     const user = await User.findById(id);
+    console.log("Found user:", user);
     done(null, user);
   } catch (err) {
+    console.error("Error deserializing user:", err);
     done(err);
   }
 });
+
 
 // for defining local variables
 app.use((req,res,next)=>{

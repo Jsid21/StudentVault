@@ -24,7 +24,7 @@ if (process.env.NODE_ENV !== "production") {
   require('dotenv').config();
 }
 const app = express()
-const port = 4000
+const port = process.env.PORT || 4000
 
 
 const url = process.env.MONGODB_URL;

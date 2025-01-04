@@ -35,13 +35,13 @@ app.use(express.json());
 
 // Allow CORS with credentials
 app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "https://student-vault.vercel.app/"); // React app's URL
+    res.header("Access-Control-Allow-Origin", "https://studentvault.onrender.com"); // React app's URL
     res.header("Access-Control-Allow-Credentials", "true");
     next();
 });
 
 const corsOptions = {
-  origin: ["https://student-vault.vercel.app"],
+  origin: ["https://studentvault.onrender.com"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization", "x-client-id"],
   credentials: true

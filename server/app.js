@@ -40,16 +40,13 @@ app.use((req, res, next) => {
 });
 
 const corsOptions = {
-    origin: "https://student-vault.vercel.app/", // React app's URL
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization","x-client-id"],
-    credentials: true, // Allow cookies to be sent
+  origin: ["http://localhost:5173", "https://student-vault.vercel.app"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization", "x-client-id"],
+  credentials: true
 };
 app.use(cors(corsOptions));
 
-// restrict unauthorized calls
-// const csrfProtection = csrf({ cookie: true });
-// app.use(csrfProtection);
 
 
 // to store all session details on mongodb
@@ -118,42 +115,6 @@ const connectDB = async () => {
   }
 };
 connectDB();
-// const client = new MongoClient(url, {
-//   serverApi: {
-//     version: ServerApiVersion.v1,
-//     strict: true,
-//     deprecationErrors: true,
-//   }
-// });
-
-
-// async function run() {
-//   try {
-//     // Connect the client to the server	(optional starting in v4.7)
-//     await client.connect();
-//     // Send a ping to confirm a successful connection
-//     await client.db("admin").command({ ping: 1 });
-//     console.log("Pinged your deployment. You successfully connected to MongoDB!");
-//   } finally {
-//     // Ensures that the client will close when you finish/error
-//     await client.close();
-//   }
-// }
-// run().catch(console.dir);
-// async function connectToDatabase() {
-//     try {
-//         await mongoose.connect(uri,clientOptions,{
-//             useNewUrlParser: true,
-//             useUnifiedTopology: true,
-//         });
-//         console.log("Successfully connected to local MongoDB!");
-//     } catch (err) {
-//         console.error("Error connecting to local MongoDB:", err);
-//     }
-// }
-
-// // Call the database connection function
-// connectToDatabase();
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
@@ -162,20 +123,7 @@ app.get('/', (req, res) => {
 app.use("/",userRoutes);
 app.use("/api",apiRoutes);
 
-// async function main() {
-//   try {
-//       await mongoose.connect(uri, {
-//           serverSelectionTimeoutMS: 5000,
-//           socketTimeoutMS: 45000,
-//       });
-//       console.log("Connected to database");
-//   } catch (err) {
-//       console.error("Failed to connect to the database", err);
-//   }
-// }
-
-// main().catch(err => console.log(err));
-  // Catch-all route for undefined paths
+// Catch-all route for undefined paths
 app.all("*", (req, res, next) => {
     next(new ExpressError("Page Not Found", 404));
   });

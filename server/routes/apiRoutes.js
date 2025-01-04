@@ -13,8 +13,8 @@ const upload = multer({ storage });
 
 // for checking active session -
 router.get('/checkSession',(req, res) => {
-  console.log('Session:', req.session);
-  console.log('User:', req.user);
+  // console.log('Session:', req.session);
+  // console.log('User:', req.user);
   
     if (req.user) {
       res.status(200).json({ isLoggedIn: true, username: req.user.username });

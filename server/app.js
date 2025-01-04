@@ -48,37 +48,39 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-// to store all session details on mongodb
-const store = MongoStore.create({
-    mongoUrl: url ,
-    crypto:{
-        secret:process.env.SECRET
-    },
-    touchAfter: 24*3600,
-});
+// // to store all session details on mongodb
+// const store = MongoStore.create({
+//     mongoUrl: url ,
+//     crypto:{
+//         secret:process.env.SECRET
+//     },
+//     touchAfter: 24*3600,
+// });
 
 store.on("error",()=>{
     console.log("error in mongodb session store",err);
 });
 
 
-// Express session setup
-const sessionOptions = {
-    store,
-    secret : process.env.SECRET,
-    resave:false,
-    saveUninitialized:true,
-    cookie:{
-        expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
-        maxAge : 7 * 24 * 60 * 60 * 1000,
-        httpOnly :true
-    }
-}
-app.use(session(sessionOptions));
+app.use(
+  session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGODB_URL,
+    }),
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production", // Only HTTPS in production
+    },
+  })
+);
 
-// library imported middlewares for password saving in database
 app.use(passport.initialize());
 app.use(passport.session());
+
 // Use local strategy
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser((user, done) => {

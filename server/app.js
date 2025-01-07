@@ -12,10 +12,14 @@ const cloudinary = require("cloudinary").v2;
 const multer = require("multer");
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const MongoStore = require('connect-mongo');
+const bodyParser = require("body-parser");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 const ExpressError = require("./utils/ExpressError.js");
 const flash = require("connect-flash");
 const userRoutes = require("./routes/userRoutes.js");
 const apiRoutes = require("./routes/apiRoutes.js");
+const cookieParser = require("cookie-parser");
 // const isLoggedIn = require("./utils/middleware.js");
 // const validateId = require("./utils/validateId.js");
 const {checkClientHeader,validateId} = require("./utils/middleware.js");
@@ -24,7 +28,7 @@ if (process.env.NODE_ENV !== "production") {
   require('dotenv').config();
 }
 const app = express()
-const port = process.env.PORT || 4000
+const port = process.env.PORT || 5000
 
 
 const url = process.env.MONGODB_URL;
@@ -32,49 +36,25 @@ const url = process.env.MONGODB_URL;
 
 // middleswares - 
 app.use(express.json());
+app.use(cookieParser());
 
 // Allow CORS with credentials
 app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "https://student-vault.vercel.app/"); // React app's URL
+    res.header("Access-Control-Allow-Origin", "https://studentvault.onrender.com"); // React app's URL
     res.header("Access-Control-Allow-Credentials", "true");
     next();
 });
 
 const corsOptions = {
-  origin: ["https://student-vault.vercel.app"],
+  origin: ["https://studentvault.onrender.com"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization", "x-client-id"],
   credentials: true
 };
 app.use(cors(corsOptions));
-
-// to store all session details on mongodb
-const store = MongoStore.create({
-    mongoUrl: url ,
-    crypto:{
-        secret:process.env.SECRET
-    },
-    touchAfter: 24*3600,
-});
-store.on("error",()=>{
-    console.log("error in mongodb session store",err);
-});
-
-
-// Express session setup
-// const sessionOptions = {
-//     store,
-//     secret : process.env.SECRET,
-//     resave:false,
-//     saveUninitialized:true,
-//     cookie:{
-//         expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
-//         maxAge : 7 * 24 * 60 * 60 * 1000,
-//         httpOnly :true
-//     }
-// }
+app.use(bodyParser.json());
 app.use(session({
-    store,
+    // store,
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
@@ -86,28 +66,6 @@ app.use(session({
     },
 }));
 
-// library imported middlewares for password saving in database
-app.use(passport.initialize());
-app.use(passport.session());
-// Use local strategy
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-// passport.serializeUser((user, done) => {
-//   done(null, user.id); // Store the user ID in the session
-// });
-// passport.deserializeUser(async (id, done) => {
-//   console.log("Deserializing user with ID:", id);
-//   try {
-//     const user = await User.findById(id);
-//     console.log("Found user:", user);
-//     done(null, user);
-//   } catch (err) {
-//     console.error("Error deserializing user:", err);
-//     done(err);
-//   }
-// });
-
 
 // for defining local variables
 app.use((req,res,next)=>{
@@ -115,8 +73,6 @@ app.use((req,res,next)=>{
     next();
 });
 
-// Use connect-flash
-app.use(flash());
 
 // Middleware to pass flash messages to the frontend
 app.use((req, res, next) => {

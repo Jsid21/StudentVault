@@ -11,11 +11,11 @@ export const Navbar = ({ session, onLogout }) => {
     try {
       // Logout endpoint (assumes /logout exists on your backend)
       await axios.post(
-        'https://studentvault-server.onrender.com/logout',
-        {},
+        'https://studentvault-server.onrender.com/logout',{},
         {
           headers: {
             "x-client-id": import.meta.env.VITE_CLIENT_ID, // Must match the value on the server
+            // "x-client-id":'sid_j'
           },
           withCredentials: true,
         }

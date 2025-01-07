@@ -23,7 +23,7 @@ connectDB();
 async function initDB() {
     try {
         await post.deleteMany({});
-        initData.data = initData.data.map((obj) => ({ ...obj, owner: "6779445ba66a7b213f6e6ab1" }));
+        initData.data = initData.data.map((obj) => ({ ...obj, owner: "677d79084f8d50b58e68cab2" }));
         await post.insertMany(initData.data);
         console.log("Data was initialized");
     } catch (err) {

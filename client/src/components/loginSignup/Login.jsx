@@ -3,8 +3,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom"; 
 import "./loginsignup.css";
 
+
 export const Login = ({ onLogin}) => {
-  const [formData, setFwormData] = useState({
+  const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
@@ -26,6 +27,7 @@ export const Login = ({ onLogin}) => {
       const response = await axios.post("https://studentvault-server.onrender.com/login", formData, { 
       headers: {        
         "x-client-id": import.meta.env.VITE_CLIENT_ID, // Must match the value on the server
+        // "x-client-id":'sid_j'
       }, withCredentials: true });
 
       if (response.status === 200) {

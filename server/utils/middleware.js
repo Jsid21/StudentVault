@@ -1,3 +1,4 @@
+const jwt = require("jsonwebtoken");
 module.exports =  {
   checkClientHeader : function(req, res, next){
     const clientId = req.headers['x-client-id'];
@@ -18,4 +19,23 @@ module.exports =  {
     }
     next();
   },
+  authMiddleware : function(req,res,next){
+    try {
+      const token = req.cookies.auth_token; // Extract token from cookie
+  
+      if (!token) {
+        return res.json({ loggedIn: false, message: "No token provided" });
+      }
+  
+      // Verify the token
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      req.user = decoded; // Attach user info to the request object
+  
+      next(); // Continue to the next middleware or route handler
+    } catch (err) {
+      return res.status(401).json({ loggedIn: false, message: "Invalid or expired token" });
+    }
+  }
 };
+
+

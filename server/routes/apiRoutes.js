@@ -4,7 +4,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("../models/user.js");
 const Post = require('../models/post.js');
-const {checkClientHeader,validateId} = require("../utils/middleware.js");
+const {checkClientHeader,validateId,authMiddleware} = require("../utils/middleware.js");
 const ExpressError = require("../utils/ExpressError.js");
 // below package for file uploading
 const multer  = require('multer')
@@ -12,15 +12,12 @@ const {storage} = require("../cloudConfig.js");
 const upload = multer({ storage });
 
 // for checking active session -
-router.get('/checkSession',(req, res) => {
-  // console.log('Session:', req.session);
-  // console.log('User:', req.user);
-  
-    if (req.user) {
-      res.status(200).json({ isLoggedIn: true, username: req.user.username });
-    } else {
-      res.status(200).json({ isLoggedIn: false });
-    }
+router.get('/checkSession',authMiddleware,(req, res) => {
+  res.status(200).json({
+    loggedIn: true,
+    // message: "User is logged in",
+    user: req.user.username, // Includes user details like id and username
+  });
   });
 
 // Get all posts

@@ -19,6 +19,7 @@ export const Showcontent = () => {
 
           headers: {
             "x-client-id": import.meta.env.VITE_CLIENT_ID, // Must match the value on the server
+            // "x-client-id": 'sid_j'
           },
           withCredentials: true,
         });

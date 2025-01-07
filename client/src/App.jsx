@@ -23,10 +23,10 @@ function App() {
       const response = await axios.get('https://studentvault-server.onrender.com/api/checkSession', {
         withCredentials: true,
       });
-      console.log('Session response:', response.data); // Debugging
+      // console.log('Session response:', response.data); // Debugging
       setSession({
-        isLoggedIn: response.data.isLoggedIn,
-        username: response.data.isLoggedIn ? response.data.username : '',
+        isLoggedIn: response.data.loggedIn,
+        username: response.data.loggedIn ? response.data.user : '',
       });
     } catch (error) {
       console.error('Error checking session:', error);

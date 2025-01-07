@@ -46,7 +46,7 @@ router.get("/posts/:id", checkClientHeader,async (req, res, next) => {
   });
 
 // Request for uploading posts
-router.post("/upload", checkClientHeader, upload.single("file"), async (req, res, next) => {
+router.post("/upload", checkClientHeader,authMiddleware ,upload.single("file"), async (req, res, next) => {
     try {
       const { title, description } = req.body;
       // Validate required fields
@@ -57,7 +57,7 @@ router.post("/upload", checkClientHeader, upload.single("file"), async (req, res
       const newPost = new Post({
         title,
         description,
-        owner: req.user ? req.user._id : null, // Associate with user if logged in
+        owner: req.user ? req.user.id : null, // Associate with user if logged in
       });
       // If a file is uploaded, add its details to the post
       if (req.file) {

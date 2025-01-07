@@ -68,18 +68,18 @@ app.use(session({
 
 
 // for defining local variables
-app.use((req,res,next)=>{
-    res.locals.currUser = req.user;
-    next();
-});
+// app.use((req,res,next)=>{
+//     res.locals.currUser = req.user;
+//     next();
+// });
 
 
 // Middleware to pass flash messages to the frontend
-app.use((req, res, next) => {
-  res.locals.success = req.flash("success");
-  res.locals.error = req.flash("error");
-  next();
-});
+// app.use((req, res, next) => {
+//   res.locals.success = req.flash("success");
+//   res.locals.error = req.flash("error");
+//   next();
+// });
 
 const connectDB = async () => {
   try {

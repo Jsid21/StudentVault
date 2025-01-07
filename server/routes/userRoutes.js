@@ -44,8 +44,8 @@ router.post("/login",checkClientHeader, async (req, res) => {
     // Send the token as an HTTP-only cookie
     res.cookie("auth_token", token, {
       httpOnly: true,
-      // secure: false, // Set to true if using HTTPS
-      // sameSite: "strict", // Prevent CSRF attacks
+      secure: true, // Set to true if using HTTPS
+      sameSite: "none", // Prevent CSRF attacks
       maxAge: 3600000 *24 * 7, // 1 hour
     });
 

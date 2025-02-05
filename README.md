@@ -1,4 +1,4 @@
-# StudentVault 
+# StudentVault - MERN Stack Project
 A collaborative platform for students to upload, store, and share study materials.
 ___
 StudentVault is a MERN stack-based web platform designed for students to upload, store, and share their study materials, including notes, assignments, and reference documents. With secure authentication and authorization, students can manage their files safely while ensuring access control.
